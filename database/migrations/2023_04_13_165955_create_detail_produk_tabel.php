@@ -12,7 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detail_produk', function (Blueprint $table) {
-            $table->id();
+            $table->integer('id')->primery();
+            $table->integer('id_produk')->nullable(false);
+            $table->string('kode_produk', 255)->nullable(false);
+            $table->integer('jenis_produk')->nullable(false);
+            $table->string('nama_produk', 255)->nullable(false);
+            $table->string('nama_petani', 255)->nullable(false);
+            $table->string('teknik_budidaya', 255)->nullable(false);
+            $table->string('teknik_budidaya', 255)->nullable(false);
+            $table->string('lokasi_tanam', 255)->nullable(false);
+            $table->date('tanggal_tanam', 255)->nullable(false);
+            $table->date('tanggal_tanam', 255)->nullable(false);
+            $table->integer('usia_bulan')->nullable(false);
+            $table->integer('usia_hari')->nullable(false);
+            $table->integer('kualitas_produk')->nullable(false);
+            $table->date('tanggal_expired')->nullable(false);
             $table->timestamps();
         });
     }

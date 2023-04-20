@@ -23,4 +23,9 @@ class DetailProduk extends Model
         'kualitas_produk',
         'tanggal_expired'
     ];
+
+    public function produk()
+    {
+        return $this->hasOne('App\Models\DetailProduk', 'id', 'id_produk');
+    }
 }

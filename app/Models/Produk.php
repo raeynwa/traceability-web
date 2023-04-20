@@ -14,4 +14,8 @@ class Produk extends Model
         'nama_produk'
     ];
 
+    public function detail_produk()
+    {
+        return $this->belongsTo('App\Models\DetailProduk', 'id', 'id_produk');
+    }
 }

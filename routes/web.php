@@ -18,3 +18,17 @@ Route::prefix('/')->group(function () {
     Route::post('store', [App\Http\Controllers\LoginController::class, 'store'])->name('auth.login.store');
     Route::get('logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('auth.logout.store');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+
+    Route::prefix('master')->group(function () {
+        Route::prefix('produk')->group(function () {
+            Route::get('/', [App\Http\Controllers\master\ProdukController::class, 'index'])->name('master.produk.index');
+            Route::post('/store', [App\Http\Controllers\master\ProdukController::class, 'store'])->name('master.produk.store');
+            Route::get('/edit', [App\Http\Controllers\master\ProdukController::class, 'edit'])->name('master.produk.edit');
+            Route::post('/update', [App\Http\Controllers\master\ProdukController::class, 'update'])->name('master.produk.update');
+            Route::post('/delete', [App\Http\Controllers\master\ProdukController::class, 'delete'])->name('master.produk.delete');
+        });
+    });
+});

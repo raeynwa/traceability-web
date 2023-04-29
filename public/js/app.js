@@ -1,2 +1,2 @@
-import Swal from 'sweetalert2';
+const Swal = window.Sweetalert2;
 window.Swal = Swal;

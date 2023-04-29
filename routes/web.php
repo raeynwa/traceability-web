@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('/')->group(function () {
-    Route::get('', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
+    Route::get('login', [App\Http\Controllers\LoginController::class, 'index'])->name('login');
     Route::post('store', [App\Http\Controllers\LoginController::class, 'store'])->name('auth.login.store');
     Route::get('logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('auth.logout.store');
 });

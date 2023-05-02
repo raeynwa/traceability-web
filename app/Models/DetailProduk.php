@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DetailProduk extends Model
 {
-    use HasFactory;
+    protected $table = 'detail_produk';
     protected $fillable = [
         'id',
         'id_produk',
@@ -26,6 +25,6 @@ class DetailProduk extends Model
 
     public function produk()
     {
-        return $this->hasOne('App\Models\DetailProduk', 'id', 'id_produk');
+        return $this->hasOne('App\Models\Produk', 'id', 'id_produk');
     }
 }

@@ -24,11 +24,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('master')->group(function () {
         Route::prefix('produk')->group(function () {
-            Route::get('/', [App\Http\Controllers\master\ProdukController::class, 'index'])->name('master.produk.index');
-            Route::post('/store', [App\Http\Controllers\master\ProdukController::class, 'store'])->name('master.produk.store');
-            Route::get('/edit', [App\Http\Controllers\master\ProdukController::class, 'edit'])->name('master.produk.edit');
-            Route::post('/update', [App\Http\Controllers\master\ProdukController::class, 'update'])->name('master.produk.update');
-            Route::post('/delete', [App\Http\Controllers\master\ProdukController::class, 'delete'])->name('master.produk.delete');
+            Route::get('/', [App\Http\Controllers\ProdukController::class, 'index'])->name('master.produk.index');
+            Route::post('/store', [App\Http\Controllers\ProdukController::class, 'store'])->name('master.produk.store');
+            Route::get('/edit', [App\Http\Controllers\ProdukController::class, 'edit'])->name('master.produk.edit');
+            Route::post('/update', [App\Http\Controllers\ProdukController::class, 'update'])->name('master.produk.update');
+            Route::post('/delete', [App\Http\Controllers\ProdukController::class, 'delete'])->name('master.produk.delete');
         });
     });
 });

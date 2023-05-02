@@ -15,7 +15,7 @@
                         Master
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Produk</a></li>
+                        <li><a class="dropdown-item" href="{{route('master.produk.index')}}">Produk</a></li>
                     </ul>
                 </li>
 

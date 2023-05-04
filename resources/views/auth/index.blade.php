@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body p-0 border shadow-sm">
             <div class="text-center mt-4 pb-0 mb-0">
-                <img src="{{ asset('favicon.ico') }}" class="img-fluid" alt="logo" style="max-height: 150px;">
+                <h6>Traceability System</h6>
             </div>
             <div class="m-5 mx-5 mb-5 mt-4">
                 {{-- <h5 class="text-center fw-bold text-sec pb-3">Login</h5> --}}
@@ -32,9 +32,6 @@
                     </div>
                     <div class="text-center mt-5 w-100">
                         <button type="submit" class="btn btn-lg btn-primary w-100 shadow">Login</button>
-                        <small class="pt-3 d-block">
-                            <a href="#">Hubungi admin apabila anda lupa password.</a>
-                        </small>
                     </div>
                 </form>
             </div>

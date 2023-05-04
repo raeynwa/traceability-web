@@ -32,7 +32,7 @@ class ProdukController extends Controller
                 })
                 ->make(true);
         }
-        $header = 'Data Master Produk';
+        $header = 'Data Produk';
         return view('pages.produk.index', compact('header'));
     }
 
@@ -51,7 +51,7 @@ class ProdukController extends Controller
             $returnData = array(
                 "status"      => "error",
                 "code"    => "422",
-                "message"   => ['jenis_produk' => "Harga produk wajib diisi"]
+                "message"   => ['jenis_produk' => "Jenis produk wajib diisi"]
             );
             return response($returnData, 422);
         }

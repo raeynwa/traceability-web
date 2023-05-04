@@ -16,7 +16,7 @@
             </div>
             <div class="card-body bg-white pt-0 mt-0">
                 <div class="col-12">
-                    <h5>Hello World!</h5>
+                    <h1>Hello World!</h1>
                 </div>
             </div>
         </div>

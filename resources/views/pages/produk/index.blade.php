@@ -113,10 +113,11 @@
             $('body').on('click', '#simpan', function() {
                 let nama_produk = $('#nama_produk').val();
                 let jenis_produk = $('#jenis_produk').val();
-                let ajax1 = $.ajax({
+                $.ajax({
                     type: 'POST',
                     url: "{{ route('master.produk.store') }}",
                     data: {
+                        _token: '{!! csrf_token() !!}',
                         nama_produk: nama_produk,
                         jenis_produk: jenis_produk
                     },

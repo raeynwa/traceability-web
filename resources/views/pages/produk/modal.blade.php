@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form method="post" id="modalFormProduk" enctype="multipart/form-data">
-                @csrf
+                {{-- @csrf --}}
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -30,8 +30,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-success" id="simpan" value="create">Simpan</button>
-                    <button type="submit" class="btn btn-success" id="update" value="create">Update</button>
+                    <button type="button" class="btn btn-success" id="simpan" value="create">Simpan</button>
+                    <button type="button" class="btn btn-success" id="update" value="create">Update</button>
                 </div>
             </form>
         </div>

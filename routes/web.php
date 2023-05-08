@@ -30,5 +30,13 @@ Route::middleware('auth')->group(function () {
             Route::post('/update', [App\Http\Controllers\ProdukController::class, 'update'])->name('master.produk.update');
             Route::post('/delete', [App\Http\Controllers\ProdukController::class, 'delete'])->name('master.produk.delete');
         });
+
+        Route::prefix('detail-produk')->group(function () {
+            Route::get('/', [App\Http\Controllers\DetailProdukController::class, 'index'])->name('master.detail-produk.index');
+            Route::post('/store', [App\Http\Controllers\DetailProdukController::class, 'store'])->name('master.detail-produk.store');
+            Route::get('/edit', [App\Http\Controllers\DetailProdukController::class, 'edit'])->name('master.detail-produk.edit');
+            Route::post('/update', [App\Http\Controllers\DetailProdukController::class, 'update'])->name('master.detail-produk.update');
+            Route::post('/delete', [App\Http\Controllers\DetailProdukController::class, 'delete'])->name('master.detail-produk.delete');
+        });
     });
 });

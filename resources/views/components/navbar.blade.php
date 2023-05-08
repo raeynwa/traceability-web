@@ -7,15 +7,11 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
+                    <a class="nav-link" href="{{ route('master.detail-produk.index') }}">Detail Produk</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('master.produk.index')}}">Produk</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Detail Produk</a>
+                    <a class="nav-link" href="{{ route('master.produk.index') }}">Produk</a>
                 </li>
             </ul>
         </div>

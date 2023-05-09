@@ -31,12 +31,22 @@ Route::middleware('auth')->group(function () {
             Route::post('/delete', [App\Http\Controllers\ProdukController::class, 'delete'])->name('master.produk.delete');
         });
 
-        Route::prefix('detail-produk')->group(function () {
-            Route::get('/', [App\Http\Controllers\DetailProdukController::class, 'index'])->name('master.detail-produk.index');
-            Route::post('/store', [App\Http\Controllers\DetailProdukController::class, 'store'])->name('master.detail-produk.store');
-            Route::get('/edit', [App\Http\Controllers\DetailProdukController::class, 'edit'])->name('master.detail-produk.edit');
-            Route::post('/update', [App\Http\Controllers\DetailProdukController::class, 'update'])->name('master.detail-produk.update');
-            Route::post('/delete', [App\Http\Controllers\DetailProdukController::class, 'delete'])->name('master.detail-produk.delete');
+        Route::prefix('user')->group(function () {
+            Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('master.user.index');
+            Route::post('/store', [App\Http\Controllers\UserController::class, 'store'])->name('master.user.store');
+            Route::get('/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('master.user.edit');
+            Route::post('/update', [App\Http\Controllers\UserController::class, 'update'])->name('master.user.update');
+            Route::post('/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('master.user.delete');
         });
     });
+
+    Route::prefix('detail-produk')->group(function () {
+        Route::get('/', [App\Http\Controllers\DetailProdukController::class, 'index'])->name('detail-produk.index');
+        Route::post('/store', [App\Http\Controllers\DetailProdukController::class, 'store'])->name('detail-produk.store');
+        Route::get('/edit', [App\Http\Controllers\DetailProdukController::class, 'edit'])->name('detail-produk.edit');
+        Route::post('/update', [App\Http\Controllers\DetailProdukController::class, 'update'])->name('detail-produk.update');
+        Route::post('/delete', [App\Http\Controllers\DetailProdukController::class, 'delete'])->name('detail-produk.delete');
+    });
+
+    
 });

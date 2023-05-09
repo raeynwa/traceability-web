@@ -14,7 +14,7 @@ class LoginController extends Controller
     public function index(Request $request)
     {
         if (Auth::check()) {
-            return redirect()->route('pages.dashboard');
+            return redirect()->route('detail-produk.index');
         }
         return view('auth.index');
     }
@@ -37,7 +37,7 @@ class LoginController extends Controller
             $credentials = $request->only('username', 'password');
             if (Auth::attempt($credentials)) {
                 Alert::success('Hi, ' . $user->name, 'Selamat datang di Traceabiity System');
-                return redirect()->route('master.detail-produk.index');
+                return redirect()->route('detail-produk.index');
             }
         }
         Alert::error('Gagal', 'User tidak ditemukan');

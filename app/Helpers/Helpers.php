@@ -15,4 +15,11 @@ class Helpers
             return 'Buah';
         }
     }
+
+    public static function _role($id)
+    {
+        if ($id == 1) {
+            return 'Superadmin';
+        }
+    }
 }

@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('master.detail-produk.index') }}">Detail Produk</a>
+                    <a class="nav-link" href="{{ route('detail-produk.index') }}">Detail Produk</a>
                 </li>
 
                 <li class="nav-item">
@@ -15,7 +15,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('master.produk.index') }}">User</a>
+                    <a class="nav-link" href="{{ route('master.user.index') }}">User</a>
                 </li>
             </ul>
         </div>

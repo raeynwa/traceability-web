@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Detail Produk')
+@section('title', 'User')
 @section('style')
     <style>
         table.dataTable>tfoot tr>th>select {
@@ -33,18 +33,10 @@
                                 <tr>
                                     <th class="text-nowrap">No</th>
                                     <th class="text-nowrap">#</th>
-                                    <th class="text-nowrap">Kode</th>
                                     <th class="text-nowrap">Nama</th>
-                                    <th class="text-nowrap">Jenis Produk</th>
-                                    <th class="text-nowrap">Nama Petani</th>
-                                    <th class="text-nowrap">Teknik Budidaya</th>
-                                    <th class="text-nowrap">Lokasi Tanam</th>
-                                    <th class="text-nowrap">Tanggal Tanam</th>
-                                    <th class="text-nowrap">Tanggal Panen</th>
-                                    <th class="text-nowrap">Usia Bulan</th>
-                                    <th class="text-nowrap">Usia Hari</th>
-                                    <th class="text-nowrap">Kualitas Produk</th>
-                                    <th class="text-nowrap">Tanggal Expired</th>
+                                    <th class="text-nowrap">Username</th>
+                                    <th class="text-nowrap">E-mail</th>
+                                    <th class="text-nowrap">Role</th>
                                 </tr>
                             </thead>
                         </table>
@@ -103,13 +95,23 @@
                         searchable: 'false'
                     },
                     {
-                        data: 'nama_produk',
-                        name: 'nama_produk',
+                        data: 'name',
+                        name: 'name',
                         class: 'text-nowrap'
                     },
                     {
-                        data: 'jenis_produk',
-                        name: 'jenis_produk',
+                        data: 'username',
+                        name: 'username',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'role',
+                        name: 'role',
                         class: 'text-nowrap'
                     },
                 ],

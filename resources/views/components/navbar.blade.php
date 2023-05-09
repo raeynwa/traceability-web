@@ -13,6 +13,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('master.produk.index') }}">Produk</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('master.produk.index') }}">User</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-success" id="simpan" value="create">Simpan</button>
+                    <button type="button" class="btn btn-primary" id="simpan" value="create">Simpan</button>
                     <button type="button" class="btn btn-success" id="update" value="create">Update</button>
                 </div>
             </form>

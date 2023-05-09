@@ -37,7 +37,7 @@ class LoginController extends Controller
             $credentials = $request->only('username', 'password');
             if (Auth::attempt($credentials)) {
                 Alert::success('Hi, ' . $user->name, 'Selamat datang di Traceabiity System');
-                return redirect()->route('home');
+                return redirect()->route('master.detail-produk.index');
             }
         }
         Alert::error('Gagal', 'User tidak ditemukan');

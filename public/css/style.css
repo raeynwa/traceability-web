@@ -1,0 +1,244 @@
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+.btn-square {
+    border-radius: 0;
+}
+
+/* add some < after link */
+.sidebar [data-bs-toggle=collapse]:after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: " ";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.2rem;
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
+
+/* change direction to > after link */
+.sidebar [aria-expanded=true]:after,
+.sidebar [data-bs-toggle=collapse]:not(.collapsed):after {
+    top: 1.4rem;
+    transform: rotate(-135deg);
+}
+
+/* change style sidebar dropdown lv 1with padding */
+.sidebar-dropdown .sidebar-link {
+    background: transparent;
+    border-left: 0;
+    color: #adb5bd;
+    font-size: 90%;
+    font-weight: 400;
+    padding: .625rem 1.5rem .625rem 3.25rem;
+}
+
+/* change style sidebar dropdown lv 2 with padding */
+.sidebar-dropdown .sidebar-dropdown .sidebar-link {
+    padding: .625rem 1.5rem .625rem 4.5rem;
+}
+
+/* change style sidebar dropdown lv 3 with padding */
+.sidebar-dropdown .sidebar-dropdown .sidebar-dropdown .sidebar-link {
+    padding: .625rem 1.5rem .625rem 5.75rem;
+}
+
+/* add arrow for multi level */
+.sidebar-dropdown .sidebar-link:before {
+    content: "→";
+    display: inline-block;
+    left: -14px;
+    position: relative;
+    transform: translateX(0);
+    transition: all .1s ease;
+}
+
+/* change style active for level 1 */
+.sidebar-dropdown .sidebar-item.active .sidebar-link {
+    background: transparent;
+    border-left: 0;
+    color: #518be1;
+    font-weight: 400;
+}
+
+/* change style hover for all level */
+.sidebar-dropdown .sidebar-item .sidebar-link:hover {
+    background: transparent;
+    border-left: 0;
+    color: #e9ecef;
+    font-weight: 400;
+}
+
+/* change style hover for before arrow content all level */
+.sidebar-dropdown .sidebar-item .sidebar-link:hover:hover:before {
+    transform: translateX(4px);
+}
+
+/* table icon color */
+.table-action a {
+    color: #6c757d;
+}
+
+/* sweetalert custom */
+.swal2-timer-progress-bar {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* div.swal2-popup.swal2-toast{
+    padding: 0.6em !important;
+}
+
+body.swal2-toast-shown .swal2-container {
+    width: 22em !important;
+} */
+
+.bg-masoem {
+    background-color: #3C3D96;
+}
+
+
+.btn-masoem {
+    background-color: #31518e !important;
+    color: #fff !important;
+}
+
+.btn-masoem:hover {
+    background-color: #355799 !important;
+}
+
+.form-check-input-masoem {
+    background-color: transparent !important;
+}
+
+.form-check-input-masoem:checked {
+    background-color: #3C3D96 !important;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity, transform;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.waves-effect .waves-ripple {
+    position: absolute;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    -ms-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    -o-transition-property: -o-transform, opacity;
+    transition-property: transform, opacity;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    pointer-events: none;
+}
+
+.waves-effect.waves-light .waves-ripple {
+    background-color: rgba(255, 255, 255, 0.45);
+}
+
+.waves-effect.waves-red .waves-ripple {
+    background-color: rgba(244, 67, 54, 0.7);
+}
+
+.waves-effect.waves-yellow .waves-ripple {
+    background-color: rgba(255, 235, 59, 0.7);
+}
+
+.waves-effect.waves-orange .waves-ripple {
+    background-color: rgba(255, 152, 0, 0.7);
+}
+
+.waves-effect.waves-purple .waves-ripple {
+    background-color: rgba(156, 39, 176, 0.7);
+}
+
+.waves-effect.waves-green .waves-ripple {
+    background-color: rgba(76, 175, 80, 0.7);
+}
+
+.waves-effect.waves-teal .waves-ripple {
+    background-color: rgba(0, 150, 136, 0.7);
+}
+
+/* Firefox Bug: link not triggered */
+a.waves-effect .waves-ripple {
+    z-index: -1;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper>.input-icon {
+    position: absolute;
+    right: .9rem;
+    top: .6rem;
+    cursor: pointer;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-control-placeholder {
+    position: absolute;
+    font-weight: 500;
+    top: .515rem;
+    left: 1rem;
+    padding: 0;
+    transition: all 200ms;
+    opacity: 0.5;
+    pointer-events: none;
+    font-size: .80rem;
+}
+
+.form-control-placeholder span{
+    color: rgb(118, 118, 118);
+    background-color: #FFFFFF;
+}
+
+.form-control:focus+.form-control-placeholder,
+.form-control:not(:placeholder-shown)+.form-control-placeholder {
+    font-size: .68rem;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+}
+
+.text-sec{
+    color: rgb(118, 118, 118);
+}

@@ -1,7 +1,7 @@
-<div class="modal fade" id="modalDetailProduk" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="modalUser" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form method="post" id="modalFormDetailProduk" enctype="multipart/form-data">
+            <form method="post" id="modalFormUser" enctype="multipart/form-data">
                 {{-- @csrf --}}
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold"></h5>
@@ -10,66 +10,49 @@
                 <div class="modal-body">
                     <input type="hidden" name="data_id" id="data_id">
                     <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Nama Produk</label>
-                        <div class="col-lg-10">
-                            <select class="form-select" name="id_produk" id="id_produk">
+                        <label class="col-form-label col-lg-3">Nama</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="name" id="name" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-form-label col-lg-3">Username</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="username" id="username" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-form-label col-lg-3">E-mail</label>
+                        <div class="col-lg-9">
+                            <input type="email" class="form-control" name="email" id="email" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-form-label col-lg-3">Role</label>
+                        <div class="col-lg-9">
+                            <select class="form-select" name="role" id="role">
+                                <option value="">-- Pilih Role --</option>
+                                <option value="1">Superadmin</option>
                             </select>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Jenis Produk</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="jenis_produk" id="jenis_produk" readonly>
+                        <label class="col-form-label col-lg-3">Password</label>
+                        <div class="col-lg-9 input-wrapper">
+                            <input type="password" class="form-control" name="password" id="password" required>
+                            <span class="input-icon"><i class="far fa-eye" id="toggle_password"></i></span>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Nama Petani</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" placeholder="Masukan Nama Petani" name="nama_petani" id="nama_petani" required>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Teknik Budidaya</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" placeholder="Masukan Teknik Budidaya" name="teknik_budidaya" id="teknik_budidaya" required>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Lokasi Tanam</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" placeholder="Masukan Lokasi Tanam" name="lokasi_tanam" id="lokasi_tanam" required>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Tanggal Tanam</label>
-                        <div class="col-lg-10">
-                            <input type="date" class="form-control" name="tgl_tanam" id="tgl_tanam" required>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Tanggal Panen</label>
-                        <div class="col-lg-10">
-                            <input type="date" class="form-control" name="tgl_panen" id="tgl_panen" required>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Tanggal Expired</label>
-                        <div class="col-lg-10">
-                            <input type="date" class="form-control" name="tgl_exp" id="tgl_exp" required>
-                            <div class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label class="col-form-label col-lg-2">Kualitas Produk</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" placeholder="Masukan Kualitas Produk" name="kualitas" id="kualitas" required>
+                        <label class="col-form-label col-lg-3">Konfirmasi Password</label>
+                        <div class="col-lg-9 input-wrapper">
+                            <input type="password" class="form-control" name="konfirmasi_password" id="konfirmasi_password" required>
+                            <span class="input-icon"><i class="far fa-eye" id="toggle_konfirmasi_password"></i></span>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>

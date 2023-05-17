@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    @include('pages.detail_produk.modal')
+    @include('pages.user.modal')
 @endsection
 
 @section('script')
@@ -71,6 +71,28 @@
     <script>
         $(document).ready(function() {
             let uriIndex;
+            const password = document.querySelector("#password");
+            const togglePassword = document.querySelector("#toggle_password");
+            const konfirmasiPassword = document.querySelector("#konfirmasi_password");
+            const toggleKonfirmasiPassword = document.querySelector("#toggle_konfirmasi_password");
+
+            togglePassword.addEventListener("click", function() {
+                // toggle the type attribute
+                const type = password.getAttribute("type") === "password" ? "text" : "password";
+                password.setAttribute("type", type);
+                // toggle the eye icon
+                this.classList.toggle('fa-eye-slash');
+                this.classList.toggle('fa-eye');
+            });
+
+            toggleKonfirmasiPassword.addEventListener("click", function() {
+                // toggle the type attribute
+                const type = konfirmasiPassword.getAttribute("type") === "password" ? "text" : "password";
+                konfirmasiPassword.setAttribute("type", type);
+                // toggle the eye icon
+                this.classList.toggle('fa-eye-slash');
+                this.classList.toggle('fa-eye');
+            });
 
             var table = $('#dataProduk').DataTable({
                 processing: true,
@@ -126,8 +148,8 @@
             });
 
             $('body').on('click', '#tambah', function() {
-                $('#modalDetailProduk').modal('show');
-                $('.modal-title').text("Tambah Detail Produk");
+                $('#modalUser').modal('show');
+                $('.modal-title').text("Tambah User");
                 $('#update').addClass('d-none');
                 $('#simpan').removeClass('d-none');
                 $('#nama_produk').val('');

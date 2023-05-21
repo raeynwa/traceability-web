@@ -157,19 +157,27 @@
             });
 
             $('body').on('click', '#simpan', function() {
-                let nama_produk = $('#nama_produk').val();
-                let jenis_produk = $('#jenis_produk').val();
+                let name = $('#name').val();
+                let username = $('#username').val();
+                let email = $('#email').val();
+                let role = $('#role').val();
+                let password = $('#password').val();
+                let konfirmasi_password = $('#konfirmasi_password').val();
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('master.produk.store') }}",
+                    url: "{{ route('master.user.store') }}",
                     data: {
                         _token: '{!! csrf_token() !!}',
-                        nama_produk: nama_produk,
-                        jenis_produk: jenis_produk
+                        name: name,
+                        username: username,
+                        email: email,
+                        role: role,
+                        password: password,
+                        konfirmasi_password: konfirmasi_password,
                     },
                     dataType: 'json',
                     success: function(data) {
-                        $('#modalProduk').modal('hide');
+                        $('#modalUser').modal('hide');
                         swal({
                             title: data.title,
                             text: data.message,
@@ -179,7 +187,7 @@
                         table.draw();
                     },
                     error: function(data) {
-                        $('#modalProduk').modal('show');
+                        $('#modalUser').modal('show');
                     }
                 });
             });
@@ -188,43 +196,52 @@
                 let id = $(this).data('id');
                 let ajax1 = $.ajax({
                     type: 'GET',
-                    url: "{{ route('master.produk.edit') }}",
+                    url: "{{ route('master.user.edit') }}",
                     data: {
                         id: id,
                     },
                     dataType: 'json',
                     success: function(data) {
-                        $('#modalProduk').modal('show');
-                        $('.modal-title').text("Edit Produk " + data.data.nama_produk);
+                        $('#modalUser').modal('show');
+                        $('.modal-title').text("Edit User " + data.data.nama_produk);
                         $('#simpan').addClass('d-none');
                         $('#update').removeClass('d-none');
                         $('#update').val(data.data.id);
-                        $('#nama_produk').val(data.data.nama_produk);
-                        $('#jenis_produk').val(data.data.jenis_produk);
+                        $('#name').val(data.data.name);
+                        $('#username').val(data.data.username);
+                        $('#email').val(data.data.email);
+                        $('#role').val(data.data.role);
                     },
                     error: function(data) {
-                        $('#modalProduk').modal('hide');
+                        $('#modalUser').modal('hide');
                     }
                 });
             });
 
             $('body').on('click', '#update', function() {
                 let id = $(this).val();
-                let nama_produk = $('#nama_produk').val();
-                let jenis_produk = $('#jenis_produk').val();
-                console.log(id);
+                let name = $('#name').val();
+                let username = $('#username').val();
+                let email = $('#email').val();
+                let role = $('#role').val();
+                let password = $('#password').val();
+                let konfirmasi_password = $('#konfirmasi_password').val();
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('master.produk.update') }}",
+                    url: "{{ route('master.user.update') }}",
                     data: {
                         _token: '{!! csrf_token() !!}',
                         id: id,
-                        nama_produk: nama_produk,
-                        jenis_produk: jenis_produk
+                        name: name,
+                        username: username,
+                        email: email,
+                        role: role,
+                        password: password,
+                        konfirmasi_password: konfirmasi_password,
                     },
                     dataType: 'json',
                     success: function(data) {
-                        $('#modalProduk').modal('hide');
+                        $('#modalUser').modal('hide');
                         swal({
                             title: data.title,
                             text: data.message,
@@ -234,7 +251,7 @@
                         table.draw();
                     },
                     error: function(data) {
-                        $('#modalProduk').modal('show');
+                        $('#modalUser').modal('show');
                     }
                 });
             });
@@ -243,7 +260,7 @@
                 let id = $(this).data('id');
                 let call = $(this).data('call');
 
-                $('#modalProduk').modal('hide');
+                $('#modalUser').modal('hide');
                 swal({
                     title: "Hapus Data",
                     text: "Apa anda yakin akan menghapus data " + call + " ?",
@@ -256,7 +273,7 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('master.produk.delete') }}",
+                            url: "{{ route('master.user.delete') }}",
                             method: 'POST',
                             data: {
                                 _token: '{!! csrf_token() !!}',
@@ -266,6 +283,7 @@
                                 table.draw();
                                 swal({
                                     text: data.message,
+                                    title: data.title,
                                     timer: 5000,
                                     type: data.status,
                                 });
@@ -273,6 +291,7 @@
                             error: function(data) {
                                 swal({
                                     text: data.message,
+                                    title: data.title,
                                     timer: 5000,
                                     type: data.status,
                                 });

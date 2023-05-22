@@ -17,15 +17,33 @@ class DetailProdukController extends Controller
             $data = DetailProduk::orderBy('updated_at', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('nama_produk', function ($e) {
+                    return $e['produk']['nama_produk'];
+                })
+                ->editColumn('jenis_produk', function ($e) {
+                    return Helpers::_jenis_produk($e['produk']['jenis_produk']);
+                })
+                ->editColumn('tanggal_tanam', function ($e) {
+                    return Helpers::_tgl_indo($e['tanggal_tanam']);
+                })
+                ->editColumn('tanggal_panen', function ($e) {
+                    return Helpers::_tgl_indo($e['tanggal_panen']);
+                })
+                ->editColumn('usia', function ($e) {
+                    return $e['usia_bulan'] . ' Bulan ' . $e['usia_hari'] . ' Hari';
+                })
                 ->addColumn('action', function ($e) {
                     $btn = '
                     <div class="btn-group">
-                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Edit" title="Edit" class="btn btn-sm btn-warning btnEdit">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Hapus" title="Hapus" class="btn btn-sm btn-danger btnHapus">
-                        <i class="fas fa-trash"></i>
-                    </a>
+                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Barcode" title="Barcode" class="btn btn-sm btn-primary btnBarcode">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </a>
+                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Edit" title="Edit" class="btn btn-sm btn-warning btnEdit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Hapus" title="Hapus" class="btn btn-sm btn-danger btnHapus">
+                            <i class="fas fa-trash"></i>
+                        </a>
                     </div>';
                     return $btn;
                 })

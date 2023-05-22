@@ -13,7 +13,7 @@
     </style>
 @endsection
 @section('content')
-    <div class="container p-0 text-sm">
+    <div class="container-fluid p-0 text-sm">
         <div class="row">
             <div class="col-12">
                 <div class="card-header pt-3 py-2 m-0 pb-2">
@@ -41,10 +41,12 @@
                                     <th class="text-nowrap">Lokasi Tanam</th>
                                     <th class="text-nowrap">Tanggal Tanam</th>
                                     <th class="text-nowrap">Tanggal Panen</th>
-                                    <th class="text-nowrap">Usia Bulan</th>
-                                    <th class="text-nowrap">Usia Hari</th>
+                                    <th class="text-nowrap">Usia</th>
                                     <th class="text-nowrap">Kualitas Produk</th>
                                     <th class="text-nowrap">Tanggal Expired</th>
+                                    <th class="text-nowrap">Gambar 1</th>
+                                    <th class="text-nowrap">Gambar 2</th>
+                                    <th class="text-nowrap">Gambar 3</th>
                                 </tr>
                             </thead>
                         </table>
@@ -103,6 +105,11 @@
                         searchable: 'false'
                     },
                     {
+                        data: 'kode_produk',
+                        name: 'kode_produk',
+                        class: 'text-nowrap'
+                    },
+                    {
                         data: 'nama_produk',
                         name: 'nama_produk',
                         class: 'text-nowrap'
@@ -111,6 +118,46 @@
                         data: 'jenis_produk',
                         name: 'jenis_produk',
                         class: 'text-nowrap'
+                    },
+                    {
+                        data: 'nama_petani',
+                        name: 'nama_petani',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'teknik_budidaya',
+                        name: 'teknik_budidaya',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'lokasi_tanam',
+                        name: 'lokasi_tanam',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'tanggal_tanam',
+                        name: 'tanggal_tanam',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'tanggal_panen',
+                        name: 'tanggal_panen',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'usia',
+                        name: 'usia',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'kualitas_produk',
+                        name: 'kualitas_produk',
+                        class: ''
+                    },
+                    {
+                        data: 'tanggal_expired',
+                        name: 'tanggal_expired',
+                        class: ''
                     },
                 ],
                 select: {
@@ -123,13 +170,53 @@
                 dom: '<"row"<"col-12 col-sm-6 py-0"l><"col-12 col-sm-6 py-0 pt-2 pt-sm-0"fr><"col-12"t><"col-12 d-flex justify-content-between"ip>>',
             });
 
+            function get_produk() {
+                $.ajax({
+                    url: "{{ route('master.produk.get_produk') }}",
+                    method: "GET",
+                    dataType: "json",
+                    data: {
+                        _token: '{!! csrf_token() !!}',
+                    },
+                    success: function(data) {
+                        if (data) {
+                            $('#id_produk').append('<option value="">-Pilih Produk-</option>');
+                            jQuery.each(data, function(id, data) {
+                                $('#id_produk').append('<option value="' + data.id + '">' + data.nama_produk + '</option>');
+                            });
+                        } else {
+                            $('#id_produk').append('<option value="">Produk Kosong</option>');
+                        }
+                    }
+                });
+            };
+
             $('body').on('click', '#tambah', function() {
                 $('#modalDetailProduk').modal('show');
                 $('.modal-title').text("Tambah Detail Produk");
                 $('#update').addClass('d-none');
                 $('#simpan').removeClass('d-none');
+                get_produk();
                 $('#nama_produk').val('');
                 $('#jenis_produk').val('');
+            });
+            
+            $('body').on('change', '#id_produk', function() {
+                $.ajax({
+                    url: "{{ route('master.produk.get_produk') }}",
+                    method: "GET",
+                    dataType: "json",
+                    data: {
+                        _token: '{!! csrf_token() !!}',
+                    },
+                    success: function(data) {
+                        if (data) {
+                            $('#jenis_produk').html(data.jenis_produk);
+                        } else {
+                            $('#jenis_produk').append('<option value="">Produk Kosong</option>');
+                        }
+                    }
+                });
             });
 
             $('body').on('click', '#simpan', function() {
@@ -174,6 +261,7 @@
                         $('.modal-title').text("Edit Produk " + data.data.nama_produk);
                         $('#simpan').addClass('d-none');
                         $('#update').removeClass('d-none');
+                        get_produk();
                         $('#update').val(data.data.id);
                         $('#nama_produk').val(data.data.nama_produk);
                         $('#jenis_produk').val(data.data.jenis_produk);

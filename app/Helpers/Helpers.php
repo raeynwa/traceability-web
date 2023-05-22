@@ -22,4 +22,30 @@ class Helpers
             return 'Superadmin';
         }
     }
+
+    public static function _tgl_indo($tanggal)
+    {
+        $bulan = array(
+            1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+
+        $pecahkan = explode('-', $tanggal);
+        $hari = date("l", strtotime($tanggal));
+        // variabel pecahkan 0 = tahun a
+        // variabel pecahkan 1 = bulan
+        // variabel pecahkan 2 = tanggal
+
+        return  $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+    }
 }

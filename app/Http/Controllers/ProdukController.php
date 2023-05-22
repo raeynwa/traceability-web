@@ -164,4 +164,10 @@ class ProdukController extends Controller
             'message' => 'Data tidak bisa dihapus karena telah digunakan di Detail Produk.'
         ], 400);
     }
+
+    public function get_produk()
+    {
+        $data = Produk::orderBy('nama_produk', 'ASC')->get();
+        return $data;
+    }
 }

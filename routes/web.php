@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit', [App\Http\Controllers\ProdukController::class, 'edit'])->name('master.produk.edit');
             Route::post('/update', [App\Http\Controllers\ProdukController::class, 'update'])->name('master.produk.update');
             Route::post('/delete', [App\Http\Controllers\ProdukController::class, 'delete'])->name('master.produk.delete');
+            Route::get('/get_produk', [App\Http\Controllers\ProdukController::class, 'get_produk'])->name('master.produk.get_produk');
         });
 
         Route::prefix('user')->group(function () {

@@ -200,49 +200,68 @@
                 $('#nama_produk').val('');
                 $('#jenis_produk').val('');
             });
-            
+
             $('body').on('change', '#id_produk', function() {
+                let id = $(this).val();
                 $.ajax({
-                    url: "{{ route('master.produk.get_produk') }}",
+                    url: "{{ route('master.produk.selected_produk') }}",
                     method: "GET",
                     dataType: "json",
                     data: {
                         _token: '{!! csrf_token() !!}',
+                        id: id
                     },
                     success: function(data) {
                         if (data) {
-                            $('#jenis_produk').html(data.jenis_produk);
+                            if (data.jenis_produk == 1) {
+                                data.jenis_produk = 'Sayur';
+                            } else {
+                                data.jenis_produk = 'Buah';
+                            }
+                            $('#jenis_produk').append('<option selected>' + data.jenis_produk + '</option>');
                         } else {
-                            $('#jenis_produk').append('<option value="">Produk Kosong</option>');
+                            $('#jenis_produk').append('<option value=""></option>');
                         }
                     }
                 });
             });
 
             $('body').on('click', '#simpan', function() {
-                let nama_produk = $('#nama_produk').val();
-                let jenis_produk = $('#jenis_produk').val();
+                let id_produk = $('#id_produk').val();
+                let nama_petani = $('#nama_petani').val();
+                let teknik_budidaya = $('#teknik_budidaya').val();
+                let lokasi_tanam = $('#lokasi_tanam').val();
+                let tgl_tanam = $('#tgl_tanam').val();
+                let tgl_panen = $('#tgl_panen').val();
+                let tgl_exp = $('#tgl_exp').val();
+                let kualitas = $('#kualitas').val();
+                let gambar_1 = $('#gambar_1').val();
+                let gambar_2 = $('#gambar_2').val();
+                let gambar_3 = $('#gambar_3').val();
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('master.produk.store') }}",
+                    url: "{{ route('detail-produk.store') }}",
                     data: {
                         _token: '{!! csrf_token() !!}',
-                        nama_produk: nama_produk,
-                        jenis_produk: jenis_produk
+                        id_produk: id_produk,
+                        nama_petani: nama_petani,
+                        teknik_budidaya: teknik_budidaya,
+                        lokasi_tanam: lokasi_tanam,
+                        tgl_tanam: tgl_tanam,
+                        tgl_panen: tgl_panen,
+                        tgl_exp: tgl_exp,
+                        kualitas: kualitas,
+                        gambar_1: gambar_1,
+                        gambar_2: gambar_2,
+                        gambar_3: gambar_3,
                     },
                     dataType: 'json',
                     success: function(data) {
-                        $('#modalProduk').modal('hide');
-                        swal({
-                            title: data.title,
-                            text: data.message,
-                            timer: 5000,
-                            type: data.status,
-                        });
+                        $('#modalDetailProduk').modal('hide');
                         table.draw();
                     },
                     error: function(data) {
-                        $('#modalProduk').modal('show');
+                        $('#modalDetailProduk').modal('show');
                     }
                 });
             });

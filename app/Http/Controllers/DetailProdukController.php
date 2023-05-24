@@ -55,7 +55,8 @@ class DetailProdukController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->nama_produk == '') {
+        return $request;
+        if ($request->id_produk == '') {
             $returnData = array(
                 "status"      => "error",
                 "code"    => "422",

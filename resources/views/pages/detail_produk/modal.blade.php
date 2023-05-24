@@ -20,7 +20,8 @@
                     <div class="mb-3 row">
                         <label class="col-form-label col-lg-3">Jenis Produk</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="jenis_produk" id="jenis_produk" readonly>
+                            <select class="form-select" name="jenis_produk" id="jenis_produk" disabled>
+                            </select>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>

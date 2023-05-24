@@ -170,4 +170,16 @@ class ProdukController extends Controller
         $data = Produk::orderBy('nama_produk', 'ASC')->get();
         return $data;
     }
+
+    public function selected_produk(Request $request)
+    {
+        $data = Produk::where('id', $request->id)->first();
+        if ($data) {
+            return $data;
+        }
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Something Wrong.'
+        ], 400);
+    }
 }

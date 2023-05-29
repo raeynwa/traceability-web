@@ -16,10 +16,11 @@ class DetailProduk extends Model
         'lokasi_tanam',
         'tanggal_tanam',
         'tanggal_panen',
-        'usia_bulan',
-        'usia_hari',
         'kualitas_produk',
-        'tanggal_expired'
+        'tanggal_expired',
+        'gambar_1',
+        'gambar_2',
+        'gambar_3'
     ];
 
     public function produk()

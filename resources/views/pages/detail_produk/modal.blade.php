@@ -1,8 +1,8 @@
 <div class="modal fade" id="modalDetailProduk" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form method="post" id="modalFormDetailProduk" enctype="multipart/form-data">
-                {{-- @csrf --}}
+            <form type="post" id="modalFormDetailProduk" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -79,6 +79,9 @@
                         <div class="col-lg-9">
                             <input type="file" class="form-control" name="gambar_1" id="gambar_1" required>
                             <div class="invalid-feedback"></div>
+                            <div class="col-md-7 d-flex justify-content-center img-fluid">
+                                <img class="d-none gambarPreview" id="gambar_1_preview" src="" />
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -98,7 +101,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" id="simpan" value="create">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="simpan" value="create">Simpan</button>
                     <button type="button" class="btn btn-success" id="update" value="create">Update</button>
                 </div>
             </form>

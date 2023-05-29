@@ -45,8 +45,6 @@
                                     <th class="text-nowrap">Kualitas Produk</th>
                                     <th class="text-nowrap">Tanggal Expired</th>
                                     <th class="text-nowrap">Gambar 1</th>
-                                    <th class="text-nowrap">Gambar 2</th>
-                                    <th class="text-nowrap">Gambar 3</th>
                                 </tr>
                             </thead>
                         </table>
@@ -159,6 +157,11 @@
                         name: 'tanggal_expired',
                         class: ''
                     },
+                    {
+                        data: 'gambar_1',
+                        name: 'gambar_1',
+                        class: ''
+                    },
                 ],
                 select: {
                     style: "multi"
@@ -191,14 +194,26 @@
                 });
             };
 
+            function emptyForm() {
+                $('#id_produk').val('');
+                $('#jenis_produk').val('');
+                $('#nama_petani').val('');
+                $('#teknik_budidaya').val('');
+                $('#lokasi_tanam').val('');
+                $('#tgl_tanam').val('');
+                $('#tgl_panen').val('');
+                $('#tgl_exp').val('');
+                $('#kualitas').val('');
+                $('#gambar_1').val('');
+            }
+
             $('body').on('click', '#tambah', function() {
                 $('#modalDetailProduk').modal('show');
                 $('.modal-title').text("Tambah Detail Produk");
                 $('#update').addClass('d-none');
                 $('#simpan').removeClass('d-none');
                 get_produk();
-                $('#nama_produk').val('');
-                $('#jenis_produk').val('');
+                emptyForm();
             });
 
             $('body').on('change', '#id_produk', function() {
@@ -226,42 +241,31 @@
                 });
             });
 
-            $('body').on('click', '#simpan', function() {
-                let id_produk = $('#id_produk').val();
-                let nama_petani = $('#nama_petani').val();
-                let teknik_budidaya = $('#teknik_budidaya').val();
-                let lokasi_tanam = $('#lokasi_tanam').val();
-                let tgl_tanam = $('#tgl_tanam').val();
-                let tgl_panen = $('#tgl_panen').val();
-                let tgl_exp = $('#tgl_exp').val();
-                let kualitas = $('#kualitas').val();
-                let gambar_1 = $('#gambar_1').val();
-                let gambar_2 = $('#gambar_2').val();
-                let gambar_3 = $('#gambar_3').val();
+            $('#modalFormDetailProduk').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
                 $.ajax({
-                    type: 'POST',
                     url: "{{ route('detail-produk.store') }}",
-                    data: {
-                        _token: '{!! csrf_token() !!}',
-                        id_produk: id_produk,
-                        nama_petani: nama_petani,
-                        teknik_budidaya: teknik_budidaya,
-                        lokasi_tanam: lokasi_tanam,
-                        tgl_tanam: tgl_tanam,
-                        tgl_panen: tgl_panen,
-                        tgl_exp: tgl_exp,
-                        kualitas: kualitas,
-                        gambar_1: gambar_1,
-                        gambar_2: gambar_2,
-                        gambar_3: gambar_3,
-                    },
+                    type: 'POST',
+                    data: formData,
                     dataType: 'json',
+                    processData: false,
+                    contentType: false,
                     success: function(data) {
                         $('#modalDetailProduk').modal('hide');
                         table.draw();
+                        swal({
+                            title: data.title,
+                            text: data.message,
+                            timer: 5000,
+                            type: data.status,
+                        });
                     },
-                    error: function(data) {
-                        $('#modalDetailProduk').modal('show');
+                    error: function(xhr, status, error) {
+                        $('#modalDetailProduk').modal('hide');
+                        table.draw();
                     }
                 });
             });
@@ -270,23 +274,41 @@
                 let id = $(this).data('id');
                 let ajax1 = $.ajax({
                     type: 'GET',
-                    url: "{{ route('master.produk.edit') }}",
+                    url: "{{ route('detail-produk.edit') }}",
                     data: {
                         id: id,
                     },
                     dataType: 'json',
                     success: function(data) {
-                        $('#modalProduk').modal('show');
-                        $('.modal-title').text("Edit Produk " + data.data.nama_produk);
-                        $('#simpan').addClass('d-none');
-                        $('#update').removeClass('d-none');
+                        console.log(data);
+                        if (data.data.jenis_produk == 1) {
+                            jenis_produk = 'Sayur'
+                        } else {
+                            jenis_produk = 'Buah'
+                        }
+                        $('#modalDetailProduk').modal('show');
+                        $('.modal-title').text("Edit Detail Produk " + data.data.nama_produk);
+                        $('#simpan').removeClass('d-none');
+                        $('#update').addClass('d-none');
                         get_produk();
-                        $('#update').val(data.data.id);
-                        $('#nama_produk').val(data.data.nama_produk);
-                        $('#jenis_produk').val(data.data.jenis_produk);
+                        // $('#id_produk').val(data.data.id_produk);
+                        $('#id_produk').empty();
+                        $('#id_produk').append('<option value="' + data.data.id_produk + '">' + data.data.nama_produk + '</option>');
+                        $('#jenis_produk').empty();
+                        $('#jenis_produk').append('<option value="' + data.data.jenis_produk + '">' + jenis_produk + '</option>');
+                        $('#nama_petani').val(data.data.nama_petani);
+                        $('#teknik_budidaya').val(data.data.teknik_budidaya);
+                        $('#lokasi_tanam').val(data.data.lokasi_tanam);
+                        $('#tgl_tanam').val(data.data.tanggal_tanam);
+                        $('#tgl_panen').val(data.data.tanggal_panen);
+                        $('#tgl_exp').val(data.data.tanggal_expired);
+                        $('#kualitas').val(data.data.kualitas_produk);
+                        $('#kualitas').val(data.data.kualitas_produk);
+                        $('.gambarPreview').removeClass('d-none');
+                        document.getElementById("gambar_1_preview").src = data.data.gambar_1;
                     },
                     error: function(data) {
-                        $('#modalProduk').modal('hide');
+                        $('#modalDetailProduk').modal('hide');
                     }
                 });
             });
@@ -295,7 +317,6 @@
                 let id = $(this).val();
                 let nama_produk = $('#nama_produk').val();
                 let jenis_produk = $('#jenis_produk').val();
-                console.log(id);
                 $.ajax({
                     type: 'POST',
                     url: "{{ route('master.produk.update') }}",

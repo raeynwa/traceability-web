@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('teknik_budidaya', 255)->nullable(false);
             $table->string('lokasi_tanam', 255)->nullable(false);
             $table->date('tanggal_tanam')->nullable(false);
-            $table->integer('usia_bulan')->nullable(false);
-            $table->integer('usia_hari')->nullable(false);
             $table->integer('kualitas_produk')->nullable(false);
             $table->date('tanggal_expired')->nullable(false);
             $table->timestamps();

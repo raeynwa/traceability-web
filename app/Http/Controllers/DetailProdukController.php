@@ -30,7 +30,8 @@ class DetailProdukController extends Controller
                     return Helpers::_tgl_indo($e['tanggal_panen']);
                 })
                 ->editColumn('usia', function ($e) {
-                    return $e['usia_bulan'] . ' Bulan ' . $e['usia_hari'] . ' Hari';
+                    $days = now()->diffInDays($e['tanggal_panen'], true);
+                    return $days.' hari';
                 })
                 ->addColumn('action', function ($e) {
                     $btn = '
@@ -55,28 +56,53 @@ class DetailProdukController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
-        if ($request->id_produk == '') {
-            $returnData = array(
-                "status"      => "error",
-                "code"    => "422",
-                "message"   => ['nama_produk' => "Nama produk wajib diisi"]
-            );
-            return response($returnData, 422);
+        // return $request->gambar_1;
+        $produk = Produk::where('id', $request->id_produk)->first();
+        $dates  = Carbon::now();
+        $no = 1;
+
+        if ($produk->jenis_produk == 1) {
+            $kd_1 = 'VGT';
+        } else {
+            $kd_1 = 'FRT';
         }
 
-        if ($request->jenis_produk == '') {
-            $returnData = array(
-                "status"      => "error",
-                "code"    => "422",
-                "message"   => ['jenis_produk' => "Jenis produk wajib diisi"]
-            );
-            return response($returnData, 422);
+        $kode = $kd_1 . '-' . $dates->format('Ymd') . sprintf('%03d', $no);
+
+        $file_1   = $request->file('gambar_1');
+        $ext_1    = $file_1->getClientOriginalExtension();
+        if ($ext_1 == 'jpg' || $ext_1 == 'jpeg' || $ext_1 == 'png'  || $ext_1 == 'JPG') {
+            $name_file_1  = 'Produk_1_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_1;
+            $request->file('gambar_1')->move("img/detail_produk", $name_file_1);
         }
 
-        $create = Produk::create([
-            'nama_produk'          => $request->nama_produk,
-            'jenis_produk'         => $request->jenis_produk,
+        $file_2   = $request->file('gambar_2');
+        $ext_2    = $file_2->getClientOriginalExtension();
+        if ($ext_2 == 'jpg' || $ext_2 == 'jpeg' || $ext_2 == 'png'  || $ext_2 == 'JPG') {
+            $name_file_2  = 'Produk_2_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_2;
+            $request->file('gambar_2')->move("img/detail_produk", $name_file_2);
+        }
+
+        $file_3   = $request->file('gambar_3');
+        $ext_3    = $file_3->getClientOriginalExtension();
+        if ($ext_3 == 'jpg' || $ext_3 == 'jpeg' || $ext_3 == 'png'  || $ext_3 == 'JPG') {
+            $name_file_3  = 'Produk_3_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_3;
+            $request->file('gambar_3')->move("img/detail_produk", $name_file_3);
+        }
+
+        $create = DetailProduk::create([
+            'id_produk'         => $request->id_produk,
+            'kode_produk'       => $kode,
+            'nama_petani'       => $request->nama_petani,
+            'teknik_budidaya'   => $request->teknik_budidaya,
+            'lokasi_tanam'      => $request->lokasi_tanam,
+            'tanggal_tanam'     => $request->tgl_tanam,
+            'tanggal_panen'     => $request->tgl_panen,
+            'tanggal_expired'   => $request->tgl_exp,
+            'kualitas_produk'   => $request->kualitas,
+            'gambar_1'          => $name_file_1,
+            'gambar_2'          => $name_file_2,
+            'gambar_3'          => $name_file_3,
         ]);
 
         if ($create) {
@@ -96,7 +122,27 @@ class DetailProdukController extends Controller
     public function edit(Request $request)
     {
         if ($request->id != '') {
-            $data = Produk::where('id', $request->id)->first();
+            $data = DetailProduk::join('produk', 'detail_produk.id_produk', '=', 'produk.id')
+            ->where('detail_produk.id', $request->id)
+            ->select(
+                'detail_produk.id',
+                'detail_produk.id_produk',
+                'detail_produk.kode_produk',
+                'detail_produk.nama_petani',
+                'detail_produk.teknik_budidaya',
+                'detail_produk.lokasi_tanam',
+                'detail_produk.kualitas_produk',
+                'detail_produk.tanggal_expired',
+                'detail_produk.tanggal_panen',
+                'detail_produk.tanggal_tanam',
+                'detail_produk.gambar_1',
+                'detail_produk.gambar_2',
+                'detail_produk.gambar_3',
+                'produk.nama_produk',
+                'produk.jenis_produk',
+            )
+            ->first();
+
             if (isset($data)) {
                 $returnData = array(
                     "status"  => "success",

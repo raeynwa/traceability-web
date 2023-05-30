@@ -90,7 +90,7 @@
                             <input type="file" class="form-control" name="gambar_2" id="gambar_2">
                             <div class="invalid-feedback"></div>
                             <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
-                                <img class="d-none gambarPreview img-fluid" id="gambar_1_preview" src="" />
+                                <img class="d-none gambarPreview img-fluid" id="gambar_2_preview" src="" />
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                             <input type="file" class="form-control" name="gambar_3" id="gambar_3">
                             <div class="invalid-feedback"></div>
                             <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
-                                <img class="d-none gambarPreview img-fluid" id="gambar_1_preview" src="" />
+                                <img class="d-none gambarPreview img-fluid" id="gambar_3_preview" src="" />
                             </div>
                         </div>
                     </div>

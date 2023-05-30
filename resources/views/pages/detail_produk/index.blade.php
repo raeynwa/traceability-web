@@ -319,6 +319,8 @@
                         $('#kualitas').val(data.data.kualitas_produk);
                         $('.gambarPreview').removeClass('d-none');
                         document.getElementById("gambar_1_preview").src = data.data.gambar_1;
+                        document.getElementById("gambar_2_preview").src = data.data.gambar_2;
+                        document.getElementById("gambar_3_preview").src = data.data.gambar_3;
                     },
                     error: function(data) {
                         $('#modalDetailProduk').modal('hide');

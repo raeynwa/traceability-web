@@ -52,3 +52,8 @@ Route::middleware('auth')->group(function () {
 
     
 });
+
+Route::prefix('/public')->group(function () {
+    Route::get('/', [App\Http\Controllers\PublicController::class, 'index'])->name('public.index');
+    Route::get('/detail-produk', [App\Http\Controllers\PublicController::class, 'detail_produk'])->name('public.detail-produk');
+});

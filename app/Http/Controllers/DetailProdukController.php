@@ -56,7 +56,6 @@ class DetailProdukController extends Controller
 
     public function store(Request $request)
     {
-        // return $request->gambar_1;
         $produk = Produk::where('id', $request->id_produk)->first();
         $dates  = Carbon::now();
         $no = 1;
@@ -67,7 +66,15 @@ class DetailProdukController extends Controller
             $kd_1 = 'FRT';
         }
 
-        $kode = $kd_1 . '-' . $dates->format('Ymd') . sprintf('%03d', $no);
+        $a = 1;
+        while ($a == 1) {
+            $kode = $kd_1 . '-' . $dates->format('Ymd') . sprintf('%03d', $no);
+            $kodeDetailProduk = DetailProduk::where('kode_produk', $kode)->count();
+            if ($kodeDetailProduk <= 0) {
+                $a = 2;
+            }
+            $no++;
+        }
 
         $file_1   = $request->file('gambar_1');
         $ext_1    = $file_1->getClientOriginalExtension();
@@ -225,16 +232,13 @@ class DetailProdukController extends Controller
 
     public function delete(Request $request)
     {
-        $data = DetailProduk::where('id_produk', $request->id)->count();
-        if ($data < 1) {
-            $produk = Produk::where('id', $request->id)->first();
+        $data = DetailProduk::where('id', $request->id)->first();
 
-            if ($produk->delete()) {
-                return response()->json([
-                    'status'    => 'success',
-                    'message'   => 'Data berhasil dihapus'
-                ], 201);
-            }
+        if ($data->delete()) {
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Data berhasil dihapus'
+            ], 201);
         }
 
         return response()->json([

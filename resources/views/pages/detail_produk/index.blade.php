@@ -45,6 +45,8 @@
                                     <th class="text-nowrap">Kualitas Produk</th>
                                     <th class="text-nowrap">Tanggal Expired</th>
                                     <th class="text-nowrap">Gambar 1</th>
+                                    <th class="text-nowrap">Gambar 2</th>
+                                    <th class="text-nowrap">Gambar 3</th>
                                 </tr>
                             </thead>
                         </table>
@@ -155,12 +157,22 @@
                     {
                         data: 'tanggal_expired',
                         name: 'tanggal_expired',
-                        class: ''
+                        class: 'text-nowrap'
                     },
                     {
                         data: 'gambar_1',
                         name: 'gambar_1',
-                        class: ''
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'gambar_2',
+                        name: 'gambar_2',
+                        class: 'text-nowrap'
+                    },
+                    {
+                        data: 'gambar_3',
+                        name: 'gambar_3',
+                        class: 'text-nowrap'
                     },
                 ],
                 select: {
@@ -195,7 +207,7 @@
             };
 
             function emptyForm() {
-                $('#id_produk').val('');
+                $('#id_produk').empty();
                 $('#jenis_produk').val('');
                 $('#nama_petani').val('');
                 $('#teknik_budidaya').val('');
@@ -361,7 +373,7 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('master.produk.delete') }}",
+                            url: "{{ route('detail-produk.delete') }}",
                             method: 'POST',
                             data: {
                                 _token: '{!! csrf_token() !!}',

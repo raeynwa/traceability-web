@@ -147,7 +147,23 @@ class DetailProdukController extends Controller
                 $returnData = array(
                     "status"  => "success",
                     "code"    => "200",
-                    "data"    => $data
+                    "data"    => [
+                        'id'        => $data->id,
+                        'id_produk' => $data->id_produk,
+                        'kode_produk' => $data->kode_produk,
+                        'nama_petani' => $data->nama_petani,
+                        'teknik_budidaya' => $data->teknik_budidaya,
+                        'lokasi_tanam' => $data->lokasi_tanam,
+                        'kualitas_produk' => $data->kualitas_produk,
+                        'tanggal_expired' => $data->tanggal_expired,
+                        'tanggal_panen' => $data->tanggal_panen,
+                        'tanggal_tanam' => $data->tanggal_tanam,
+                        'gambar_1' => env('APP_URL')."/img/detail_produk/".$data->gambar_1,
+                        'gambar_2' => env('APP_URL')."/img/detail_produk/".$data->gambar_2,
+                        'gambar_3' => env('APP_URL')."/img/detail_produk/".$data->gambar_3,
+                        'nama_produk' => $data->produk->nama_produk,
+                        'jenis_produk' => $data->produk->jenis_produk
+                    ]
                 );
                 return response($returnData, 200);
             } else {

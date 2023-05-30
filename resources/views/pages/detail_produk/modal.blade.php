@@ -79,8 +79,8 @@
                         <div class="col-lg-9">
                             <input type="file" class="form-control" name="gambar_1" id="gambar_1" required>
                             <div class="invalid-feedback"></div>
-                            <div class="col-md-7 d-flex justify-content-center img-fluid">
-                                <img class="d-none gambarPreview" id="gambar_1_preview" src="" />
+                            <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
+                                <img class="d-none gambarPreview img-fluid" id="gambar_1_preview" src="" />
                             </div>
                         </div>
                     </div>
@@ -89,6 +89,9 @@
                         <div class="col-lg-9">
                             <input type="file" class="form-control" name="gambar_2" id="gambar_2" required>
                             <div class="invalid-feedback"></div>
+                            <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
+                                <img class="d-none gambarPreview img-fluid" id="gambar_1_preview" src="" />
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -96,6 +99,9 @@
                         <div class="col-lg-9">
                             <input type="file" class="form-control" name="gambar_3" id="gambar_3" required>
                             <div class="invalid-feedback"></div>
+                            <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
+                                <img class="d-none gambarPreview img-fluid" id="gambar_1_preview" src="" />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -212,6 +212,7 @@
                 $('.modal-title').text("Tambah Detail Produk");
                 $('#update').addClass('d-none');
                 $('#simpan').removeClass('d-none');
+                $('.gambarPreview').addClass('d-none');
                 get_produk();
                 emptyForm();
             });

@@ -37,7 +37,7 @@ class DetailProdukController extends Controller
                     $btn = '
                     <div class="btn-group">
                         <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Barcode" title="Barcode" class="btn btn-sm btn-primary btnBarcode">
-                            <i class="fa-solid fa-qrcode"></i>
+                            <i class="fas fa-qrcode"></i>
                         </a>
                         <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Edit" title="Edit" class="btn btn-sm btn-warning btnEdit">
                             <i class="fas fa-edit"></i>

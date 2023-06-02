@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit', [App\Http\Controllers\DetailProdukController::class, 'edit'])->name('detail-produk.edit');
         Route::post('/update', [App\Http\Controllers\DetailProdukController::class, 'update'])->name('detail-produk.update');
         Route::post('/delete', [App\Http\Controllers\DetailProdukController::class, 'delete'])->name('detail-produk.delete');
+        Route::get('/detail', [App\Http\Controllers\DetailProdukController::class, 'detail'])->name('detail-produk.detail');
     });
 
     

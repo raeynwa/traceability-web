@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
 use App\Models\Produk;
 use App\Helpers\Helpers;
 use App\Models\DetailProduk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Yajra\DataTables\DataTables;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DetailProdukController extends Controller
 {
@@ -31,14 +33,14 @@ class DetailProdukController extends Controller
                 })
                 ->editColumn('usia', function ($e) {
                     $days = now()->diffInDays($e['tanggal_panen'], true);
-                    return $days.' hari';
+                    return $days . ' hari';
                 })
                 ->addColumn('action', function ($e) {
                     $btn = '
                     <div class="btn-group">
-                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Barcode" title="Barcode" class="btn btn-sm btn-primary btnBarcode">
+                        <button type="button" class="btn btn-sm btn-primary btnBarcode" title="Barcode" value="'. $e['id'].'">
                             <i class="fas fa-qrcode"></i>
-                        </a>
+                        </button>
                         <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Edit" title="Edit" class="btn btn-sm btn-warning btnEdit">
                             <i class="fas fa-edit"></i>
                         </a>
@@ -130,25 +132,25 @@ class DetailProdukController extends Controller
     {
         if ($request->id != '') {
             $data = DetailProduk::join('produk', 'detail_produk.id_produk', '=', 'produk.id')
-            ->where('detail_produk.id', $request->id)
-            ->select(
-                'detail_produk.id',
-                'detail_produk.id_produk',
-                'detail_produk.kode_produk',
-                'detail_produk.nama_petani',
-                'detail_produk.teknik_budidaya',
-                'detail_produk.lokasi_tanam',
-                'detail_produk.kualitas_produk',
-                'detail_produk.tanggal_expired',
-                'detail_produk.tanggal_panen',
-                'detail_produk.tanggal_tanam',
-                'detail_produk.gambar_1',
-                'detail_produk.gambar_2',
-                'detail_produk.gambar_3',
-                'produk.nama_produk',
-                'produk.jenis_produk',
-            )
-            ->first();
+                ->where('detail_produk.id', $request->id)
+                ->select(
+                    'detail_produk.id',
+                    'detail_produk.id_produk',
+                    'detail_produk.kode_produk',
+                    'detail_produk.nama_petani',
+                    'detail_produk.teknik_budidaya',
+                    'detail_produk.lokasi_tanam',
+                    'detail_produk.kualitas_produk',
+                    'detail_produk.tanggal_expired',
+                    'detail_produk.tanggal_panen',
+                    'detail_produk.tanggal_tanam',
+                    'detail_produk.gambar_1',
+                    'detail_produk.gambar_2',
+                    'detail_produk.gambar_3',
+                    'produk.nama_produk',
+                    'produk.jenis_produk',
+                )
+                ->first();
 
             if (isset($data)) {
                 $returnData = array(
@@ -165,9 +167,9 @@ class DetailProdukController extends Controller
                         'tanggal_expired' => $data->tanggal_expired,
                         'tanggal_panen' => $data->tanggal_panen,
                         'tanggal_tanam' => $data->tanggal_tanam,
-                        'gambar_1' => env('APP_URL')."/img/detail_produk/".$data->gambar_1,
-                        'gambar_2' => env('APP_URL')."/img/detail_produk/".$data->gambar_2,
-                        'gambar_3' => env('APP_URL')."/img/detail_produk/".$data->gambar_3,
+                        'gambar_1' => env('APP_URL') . "/img/detail_produk/" . $data->gambar_1,
+                        'gambar_2' => env('APP_URL') . "/img/detail_produk/" . $data->gambar_2,
+                        'gambar_3' => env('APP_URL') . "/img/detail_produk/" . $data->gambar_3,
                         'nama_produk' => $data->produk->nama_produk,
                         'jenis_produk' => $data->produk->jenis_produk
                     ]
@@ -245,5 +247,24 @@ class DetailProdukController extends Controller
             'status' => 'error',
             'message' => 'Data tidak bisa dihapus karena telah digunakan di Detail Produk.'
         ], 400);
+    }
+
+    public function detail(Request $request)
+    {
+        // return $request;
+        $data = DetailProduk::where('id', $request->id)->select('kode_produk', 'id')->first();
+        $qrCode = QrCode::size(50)->generate(env('APP_URL') . '/public/detail-produk?data=' . $data->id);
+        $view = view('pages.detail_produk.detail', compact('data', 'qrCode'));
+        // dd($data['header']);
+        $options = new \Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($view);
+        $dompdf->setOptions($options);
+        $dompdf->setPaper('a9', 'portait');
+        $dompdf->set_option('isRemoteEnabled', true);
+        $dompdf->render();
+        $dompdf->stream('qrcode.pdf', array("Attachment" => false));
+        exit();
     }
 }

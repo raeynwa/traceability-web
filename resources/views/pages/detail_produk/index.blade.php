@@ -406,6 +406,11 @@
                     }
                 });
             });
+
+            $('body').on('click', '.btnBarcode', function(){
+                let data = $(this).val();
+                window.open("{{ route('detail-produk.detail') }}?id=" + data).focus();
+            });
         });
     </script>
 @endsection

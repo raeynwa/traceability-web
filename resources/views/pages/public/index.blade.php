@@ -186,7 +186,7 @@
             });
 
             $('body').on('click', '.viewData', function(){
-                let data = $(this).data('id');
+                let data = $(this).val();
                 window.open("{{ route('public.detail-produk') }}?data=" + data).focus();
             });
         });

@@ -35,9 +35,9 @@ class PublicController extends Controller
                 ->addColumn('action', function ($e) {
                     $btn = '
                     <div class="btn-group">
-                        <a href="" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->id . '" data-original-title="Lihat Detail" title="Barcode" class="btn btn-sm btn-primary viewData">
+                        <button type="button" class="btn btn-sm btn-primary viewData" title="Barcode" value="'. $e['id'].'">
                             <i class="fas fa-file"></i>
-                        </a>
+                        </button>
                     </div>';
                     return $btn;
                 })

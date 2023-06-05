@@ -80,21 +80,21 @@ class DetailProdukController extends Controller
 
         $file_1   = $request->file('gambar_1');
         $ext_1    = $file_1->getClientOriginalExtension();
-        if ($ext_1 == 'jpg' || $ext_1 == 'jpeg' || $ext_1 == 'png'  || $ext_1 == 'JPG') {
+        if ($ext_1 == 'jpg' || $ext_1 == 'jpeg' || $ext_1 == 'png'  || $ext_1 == 'JPG' || $ext_1 == 'HEIC') {
             $name_file_1  = 'Produk_1_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_1;
             $request->file('gambar_1')->move("img/detail_produk", $name_file_1);
         }
 
         $file_2   = $request->file('gambar_2');
         $ext_2    = $file_2->getClientOriginalExtension();
-        if ($ext_2 == 'jpg' || $ext_2 == 'jpeg' || $ext_2 == 'png'  || $ext_2 == 'JPG') {
+        if ($ext_2 == 'jpg' || $ext_2 == 'jpeg' || $ext_2 == 'png'  || $ext_2 == 'JPG' || $ext_2 == 'HEIC') {
             $name_file_2  = 'Produk_2_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_2;
             $request->file('gambar_2')->move("img/detail_produk", $name_file_2);
         }
 
         $file_3   = $request->file('gambar_3');
         $ext_3    = $file_3->getClientOriginalExtension();
-        if ($ext_3 == 'jpg' || $ext_3 == 'jpeg' || $ext_3 == 'png'  || $ext_3 == 'JPG') {
+        if ($ext_3 == 'jpg' || $ext_3 == 'jpeg' || $ext_3 == 'png'  || $ext_3 == 'JPG' || $ext_3 == 'HEIC') {
             $name_file_3  = 'Produk_3_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_3;
             $request->file('gambar_3')->move("img/detail_produk", $name_file_3);
         }

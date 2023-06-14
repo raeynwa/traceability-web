@@ -253,7 +253,7 @@ class DetailProdukController extends Controller
     {
         // return $request;
         $data = DetailProduk::where('id', $request->id)->select('kode_produk', 'id')->first();
-        $qrCode = QrCode::size(50)->generate(env('APP_URL') . '/public/detail-produk?data=' . $data->id);
+        $qrCode = QrCode::size(150)->generate(env('APP_URL') . '/public/detail-produk?data=' . $data->id);
         $view = view('pages.detail_produk.detail', compact('data', 'qrCode'));
         // dd($data['header']);
         $options = new \Dompdf\Options();
@@ -261,7 +261,7 @@ class DetailProdukController extends Controller
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
         $dompdf->setOptions($options);
-        $dompdf->setPaper('a9', 'portait');
+        $dompdf->setPaper('a6', 'portait');
         $dompdf->set_option('isRemoteEnabled', true);
         $dompdf->render();
         $dompdf->stream('qrcode.pdf', array("Attachment" => false));

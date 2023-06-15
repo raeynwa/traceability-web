@@ -42,7 +42,7 @@
                                     <th class="text-nowrap">Tanggal Tanam</th>
                                     <th class="text-nowrap">Tanggal Panen</th>
                                     <th class="text-nowrap">Usia</th>
-                                    <th class="text-nowrap">Kualitas Produk</th>
+                                    <th class="text-nowrap">Penggunaan Pupuk</th>
                                     <th class="text-nowrap">Tanggal Expired</th>
                                     <th class="text-nowrap">Gambar 1</th>
                                     <th class="text-nowrap">Gambar 2</th>
@@ -150,8 +150,8 @@
                         class: 'text-nowrap'
                     },
                     {
-                        data: 'kualitas_produk',
-                        name: 'kualitas_produk',
+                        data: 'penggunaan_pupuk',
+                        name: 'penggunaan_pupuk',
                         class: ''
                     },
                     {
@@ -215,7 +215,7 @@
                 $('#tgl_tanam').val('');
                 $('#tgl_panen').val('');
                 $('#tgl_exp').val('');
-                $('#kualitas').val('');
+                $('#penggunaan_pupuk').val('');
                 $('#gambar_1').val('');
             }
 
@@ -315,8 +315,8 @@
                         $('#tgl_tanam').val(data.data.tanggal_tanam);
                         $('#tgl_panen').val(data.data.tanggal_panen);
                         $('#tgl_exp').val(data.data.tanggal_expired);
-                        $('#kualitas').val(data.data.kualitas_produk);
-                        $('#kualitas').val(data.data.kualitas_produk);
+                        $('#penggunaan_pupuk').val(data.data.penggunaan_pupuk);
+                        $('#penggunaan_pupuk').val(data.data.penggunaan_pupuk);
                         $('.gambarPreview').removeClass('d-none');
                         document.getElementById("gambar_1_preview").src = data.data.gambar_1;
                         document.getElementById("gambar_2_preview").src = data.data.gambar_2;

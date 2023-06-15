@@ -68,9 +68,9 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label class="col-form-label col-lg-3">Kualitas Produk</label>
+                        <label class="col-form-label col-lg-3">Penggunaan Pupuk</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" placeholder="Masukan Kualitas Produk" name="kualitas" id="kualitas" required>
+                            <input type="text" class="form-control" placeholder="Masukan Penggunaan Pupuk" name="penggunaan_pupuk" id="penggunaan_pupuk" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>

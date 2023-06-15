@@ -42,7 +42,7 @@
                                     <th class="text-nowrap">Tanggal Tanam</th>
                                     <th class="text-nowrap">Tanggal Panen</th>
                                     <th class="text-nowrap">Usia</th>
-                                    <th class="text-nowrap">Kualitas Produk</th>
+                                    <th class="text-nowrap">Penggunaan Pupuk</th>
                                     <th class="text-nowrap">Tanggal Expired</th>
                                     <th class="text-nowrap">Gambar 1</th>
                                     <th class="text-nowrap">Gambar 2</th>
@@ -150,8 +150,8 @@
                         class: 'text-nowrap'
                     },
                     {
-                        data: 'kualitas_produk',
-                        name: 'kualitas_produk',
+                        data: 'penggunaan_pupuk',
+                        name: 'penggunaan_pupuk',
                         class: ''
                     },
                     {

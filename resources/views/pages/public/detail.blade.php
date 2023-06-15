@@ -62,8 +62,8 @@
                                         <td>: {{ $data['usia'] }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Kualitas Produk</th>
-                                        <td>: {{ $data['kualitas_produk'] }}</td>
+                                        <th>Penggunaan Pupuk</th>
+                                        <td>: {{ $data['penggunaan_pupuk'] }}</td>
                                     </tr>
                                     <tr>
                                         <th>Tanggal Expired</th>

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('detail_produk', function (Blueprint $table) {
-            $table->renameColumn('kualitas_produk', 'penggunaan_pupuk');
-        });
+        DB::statement('ALTER TABLE detail_produk CHANGE kualitas_produk penggunaan_pupuk text');
+        // Schema::table('detail_produk', function (Blueprint $table) {
+        //     $table->renameColumn('kualitas_produk', 'penggunaan_pupuk');
+        // });
     }
 
     /**
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('detail_produk', function (Blueprint $table) {
-            $table->renameColumn('penggunaan_pupuk', 'kualitas_produk');
-        });
+        DB::statement('ALTER TABLE detail_produk CHANGE penggunaan_pupuk kualitas_produk text');
+        // Schema::table('detail_produk', function (Blueprint $table) {
+        //     $table->renameColumn('penggunaan_pupuk', 'kualitas_produk');
+        // });
     }
 };

@@ -60,9 +60,13 @@
 </head>
 
 <body>
-    <div class="center" style="margin-left: 0px">
+    <div class="center" style="margin-left: auto">
+        <h1>Scan Here</h1>
+        <br>
         <img src="data:image/png;base64, {!! base64_encode($qrCode) !!} ">
-        <span>{{ $data['kode_produk'] }}</span>
+        <br>
+        {{-- <span>{{ $data['kode_produk'] }}</span> --}}
+        <h1>For Traceability</h1>
     </div>
 </body>
 

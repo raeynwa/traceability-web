@@ -38,7 +38,7 @@
                                         <td>: {{ $data['kode_produk'] }}</td>
                                     </tr>
                                     <tr>
-                                        <th >Lokasi Tanam</th>
+                                        <th>Lokasi Tanam</th>
                                         <td>: {{ $data['lokasi_tanam'] }}</td>
                                     </tr>
                                     <tr>
@@ -70,30 +70,46 @@
                                         <td>: {{ $data['tanggal_expired'] }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
-                                            <div class="col-md-7 d-flex justify-content-center img-fluid mt-2">
-                                                <img class="gambarPreview img-fluid"  src="{{ $data['gambar_1'] }}" />
-                                            </div>
-                                        </td>
+                                        @if ($data['gambar_1_name'] != '')
+                                            <td colspan="2">
+                                                <div class="col-md-7 d-flex justify-content-center img-fluid mt-2">
+                                                    <img class="gambarPreview img-fluid" src="{{ $data['gambar_1'] }}" />
+                                                </div>
+                                            </td>
+                                        @else
+                                            <td colspan="2">
+                                            </td>
+                                        @endif
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
-                                            <div class="col-md-7 d-flex justify-content-center img-fluid mt-2">
-                                                <img class="gambarPreview img-fluid"  src="{{ $data['gambar_2'] }}" />
-                                            </div>
-                                        </td>
+                                        @if ($data['gambar_2_name'] != '')
+                                            <td colspan="2">
+                                                <div class="col-md-7 d-flex justify-content-center img-fluid mt-2">
+                                                    <img class="gambarPreview img-fluid" src="{{ $data['gambar_2'] }}" />
+                                                </div>
+                                            </td>
+                                        @else
+                                            <td colspan="2">
+                                            </td>
+                                        @endif
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
-                                            <div class="col-md-7 d-flex justify-content-center img-fluid mt-2">
-                                                <img class="gambarPreview img-fluid"  src="{{ $data['gambar_3'] }}" />
-                                            </div>
-                                        </td>
+                                        @if ($data['gambar_3_name'] != '')
+                                            <td colspan="2">
+                                                <div class="col-md-7 d-flex justify-content-center img-fluid mt-2">
+                                                    <img class="gambarPreview img-fluid" src="{{ $data['gambar_3'] }}" />
+                                                </div>
+                                            </td>
+                                        @else
+                                            <td colspan="2">
+                                            </td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
-                                                <a href="https://api.whatsapp.com/send?phone=6281937093899&text" target="_blank" class="btn btn-success btn-sm">WhatsApp</a>
+                                                <a href="https://api.whatsapp.com/send?phone=6281937093899&text"
+                                                    target="_blank" class="btn btn-success btn-sm">WhatsApp</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -117,8 +133,10 @@
     <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
     <script src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js" integrity="sha256-c95CVJWVMOTR2b7FhjeRhPlrSVPaz5zV5eK917/s7vc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment-with-locales.min.js" integrity="sha256-E3Snwx6F4t7DiA/L3DgPk6In2M1747JSau+3PWjtS5I=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"
+        integrity="sha256-c95CVJWVMOTR2b7FhjeRhPlrSVPaz5zV5eK917/s7vc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment-with-locales.min.js"
+        integrity="sha256-E3Snwx6F4t7DiA/L3DgPk6In2M1747JSau+3PWjtS5I=" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>

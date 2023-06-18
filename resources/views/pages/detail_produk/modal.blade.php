@@ -77,7 +77,7 @@
                     <div class="mb-3 row">
                         <label class="col-form-label col-lg-3">Gambar 1</label>
                         <div class="col-lg-9">
-                            <input type="file" class="form-control" name="gambar_1" id="gambar_1" required>
+                            <input type="file" class="form-control" name="gambar_1" id="gambar_1">
                             <div class="invalid-feedback"></div>
                             <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
                                 <img class="d-none gambarPreview img-fluid" id="gambar_1_preview" src="" />
@@ -87,7 +87,7 @@
                     <div class="mb-3 row">
                         <label class="col-form-label col-lg-3">Gambar 2</label>
                         <div class="col-lg-9">
-                            <input type="file" class="form-control" name="gambar_2" id="gambar_2" required>
+                            <input type="file" class="form-control" name="gambar_2" id="gambar_2">
                             <div class="invalid-feedback"></div>
                             <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
                                 <img class="d-none gambarPreview img-fluid" id="gambar_2_preview" src="" />
@@ -97,7 +97,7 @@
                     <div class="mb-3 row">
                         <label class="col-form-label col-lg-3">Gambar 3</label>
                         <div class="col-lg-9">
-                            <input type="file" class="form-control" name="gambar_3" id="gambar_3" required>
+                            <input type="file" class="form-control" name="gambar_3" id="gambar_3">
                             <div class="invalid-feedback"></div>
                             <div class="col-md-7 d-flex justify-content-center img-fluid mt-2 shadow">
                                 <img class="d-none gambarPreview img-fluid" id="gambar_3_preview" src="" />

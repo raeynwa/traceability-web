@@ -38,7 +38,7 @@ class DetailProdukController extends Controller
                 ->addColumn('action', function ($e) {
                     $btn = '
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-primary btnBarcode" title="Barcode" value="'. $e['id'].'">
+                        <button type="button" class="btn btn-sm btn-primary btnBarcode" title="Barcode" value="' . $e['id'] . '">
                             <i class="fas fa-qrcode"></i>
                         </button>
                         <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $e->id . '" data-call="' . $e->nama_produk . '" data-original-title="Edit" title="Edit" class="btn btn-sm btn-warning btnEdit">
@@ -58,6 +58,7 @@ class DetailProdukController extends Controller
 
     public function store(Request $request)
     {
+        // return $request;
         $produk = Produk::where('id', $request->id_produk)->first();
         $dates  = Carbon::now();
         $no = 1;
@@ -78,48 +79,80 @@ class DetailProdukController extends Controller
             $no++;
         }
 
-        $file_1   = $request->file('gambar_1');
-        $ext_1    = $file_1->getClientOriginalExtension();
-        if ($ext_1 == 'jpg' || $ext_1 == 'jpeg' || $ext_1 == 'png'  || $ext_1 == 'JPG' || $ext_1 == 'HEIC') {
-            $name_file_1  = 'Produk_1_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_1;
-            $request->file('gambar_1')->move("img/detail_produk", $name_file_1);
+        if ($request->hasFile('gambar_1')) {
+            $file_1   = $request->file('gambar_1');
+            $ext_1    = $file_1->getClientOriginalExtension();
+            if ($ext_1 == 'jpg' || $ext_1 == 'jpeg' || $ext_1 == 'png'  || $ext_1 == 'JPG' || $ext_1 == 'HEIC') {
+                $name_file_1  = 'Produk_1_' . $kode . '_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_1;
+                $request->file('gambar_1')->move("img/detail_produk", $name_file_1);
+            }
         }
 
-        $file_2   = $request->file('gambar_2');
-        $ext_2    = $file_2->getClientOriginalExtension();
-        if ($ext_2 == 'jpg' || $ext_2 == 'jpeg' || $ext_2 == 'png'  || $ext_2 == 'JPG' || $ext_2 == 'HEIC') {
-            $name_file_2  = 'Produk_2_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_2;
-            $request->file('gambar_2')->move("img/detail_produk", $name_file_2);
+        if ($request->hasFile('gambar_2')) {
+            $file_2   = $request->file('gambar_2');
+            $ext_2    = $file_2->getClientOriginalExtension();
+            if ($ext_2 == 'jpg' || $ext_2 == 'jpeg' || $ext_2 == 'png'  || $ext_2 == 'JPG' || $ext_2 == 'HEIC') {
+                $name_file_2  = 'Produk_2_' . $kode . '_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_2;
+                $request->file('gambar_2')->move("img/detail_produk", $name_file_2);
+            }
         }
 
-        $file_3   = $request->file('gambar_3');
-        $ext_3    = $file_3->getClientOriginalExtension();
-        if ($ext_3 == 'jpg' || $ext_3 == 'jpeg' || $ext_3 == 'png'  || $ext_3 == 'JPG' || $ext_3 == 'HEIC') {
-            $name_file_3  = 'Produk_3_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_3;
-            $request->file('gambar_3')->move("img/detail_produk", $name_file_3);
+        if ($request->hasFile('gambar_3')) {
+            $file_3   = $request->file('gambar_3');
+            $ext_3    = $file_3->getClientOriginalExtension();
+            if ($ext_3 == 'jpg' || $ext_3 == 'jpeg' || $ext_3 == 'png'  || $ext_3 == 'JPG' || $ext_3 == 'HEIC') {
+                $name_file_3  = 'Produk_3_' . $kode . '_' . $dates->format('Y-m-d-H-i-s') . '.' . $ext_3;
+                $request->file('gambar_3')->move("img/detail_produk", $name_file_3);
+            }
         }
 
-        $create = DetailProduk::create([
-            'id_produk'         => $request->id_produk,
-            'kode_produk'       => $kode,
-            'nama_petani'       => $request->nama_petani,
-            'teknik_budidaya'   => $request->teknik_budidaya,
-            'lokasi_tanam'      => $request->lokasi_tanam,
-            'tanggal_tanam'     => $request->tgl_tanam,
-            'tanggal_panen'     => $request->tgl_panen,
-            'tanggal_expired'   => $request->tgl_exp,
-            'penggunaan_pupuk'  => $request->penggunaan_pupuk,
-            'gambar_1'          => $name_file_1,
-            'gambar_2'          => $name_file_2,
-            'gambar_3'          => $name_file_3,
-        ]);
+        // return $request->data_id;
 
-        if ($create) {
-            return response()->json([
-                'title'     => 'Berhasil',
-                'status'    => 'success',
-                'message'   => 'Data Berhasil disimpan'
-            ], 201);
+        if ($request->data_id == '' || $request->data_id == NULL) {
+            $create = DetailProduk::create([
+                'id_produk'         => $request->id_produk,
+                'kode_produk'       => $kode,
+                'nama_petani'       => $request->nama_petani,
+                'teknik_budidaya'   => $request->teknik_budidaya,
+                'lokasi_tanam'      => $request->lokasi_tanam,
+                'tanggal_tanam'     => $request->tgl_tanam,
+                'tanggal_panen'     => $request->tgl_panen,
+                'tanggal_expired'   => $request->tgl_exp,
+                'penggunaan_pupuk'  => $request->penggunaan_pupuk,
+                'gambar_1'          => $name_file_1 ?? '',
+                'gambar_2'          => $name_file_2 ?? '',
+                'gambar_3'          => $name_file_3 ?? '',
+            ]);
+
+            if ($create) {
+                return response()->json([
+                    'title'     => 'Berhasil',
+                    'status'    => 'success',
+                    'message'   => 'Data Berhasil disimpan'
+                ], 201);
+            }
+        } else {
+            $data = DetailProduk::where('id', $request->data_id)->first();
+            $data->id_produk        = $request->id_produk;
+            $data->nama_petani      = $request->nama_petani;
+            $data->teknik_budidaya  = $request->teknik_budidaya;
+            $data->lokasi_tanam     = $request->lokasi_tanam;
+            $data->tanggal_tanam    = $request->tgl_tanam;
+            $data->tanggal_panen    = $request->tgl_panen;
+            $data->tanggal_expired  = $request->tgl_exp;
+            $data->penggunaan_pupuk = $request->penggunaan_pupuk;
+            $data->gambar_1         = $name_file_1 ?? $data->gambar_1;
+            $data->gambar_2         = $name_file_2 ?? $data->gambar_2;
+            $data->gambar_3         = $name_file_3 ?? $data->gambar_3;
+            $data->updated_at       = Carbon::now();
+
+            if ($data->save()) {
+                return response()->json([
+                    'title'     => 'Berhasil',
+                    'status'    => 'success',
+                    'message'   => 'Data Berhasil diupdate'
+                ], 201);
+            }
         }
 
         return response()->json([

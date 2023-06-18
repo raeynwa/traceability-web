@@ -305,6 +305,7 @@
                         $('#update').addClass('d-none');
                         get_produk();
                         // $('#id_produk').val(data.data.id_produk);
+                        $('#data_id').val(data.data.id);
                         $('#id_produk').empty();
                         $('#id_produk').append('<option value="' + data.data.id_produk + '">' + data.data.nama_produk + '</option>');
                         $('#jenis_produk').empty();
@@ -315,7 +316,6 @@
                         $('#tgl_tanam').val(data.data.tanggal_tanam);
                         $('#tgl_panen').val(data.data.tanggal_panen);
                         $('#tgl_exp').val(data.data.tanggal_expired);
-                        $('#penggunaan_pupuk').val(data.data.penggunaan_pupuk);
                         $('#penggunaan_pupuk').val(data.data.penggunaan_pupuk);
                         $('.gambarPreview').removeClass('d-none');
                         document.getElementById("gambar_1_preview").src = data.data.gambar_1;
@@ -328,7 +328,7 @@
                 });
             });
 
-            $('body').on('click', '#update', function() {
+            $('body').on('click', '#updateeeee', function() {
                 let id = $(this).val();
                 let nama_produk = $('#nama_produk').val();
                 let jenis_produk = $('#jenis_produk').val();

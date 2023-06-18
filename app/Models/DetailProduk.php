@@ -16,7 +16,7 @@ class DetailProduk extends Model
         'lokasi_tanam',
         'tanggal_tanam',
         'tanggal_panen',
-        'kualitas_produk',
+        'penggunaan_pupuk',
         'tanggal_expired',
         'gambar_1',
         'gambar_2',
